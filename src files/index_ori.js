@@ -1,19 +1,18 @@
-import React, { Component } from "react"; //Component is a class here
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./assets/style.css";
 import quizService from "./quizService";
 import QuestionBox from "./components/QuestionBox";
 import Result from "./components/Result";
 
-class QuizBee extends Component {
+class Quiz extends Component {
   state = {
     questionBank: [],
     score: 0,
     responses: 0,
   };
+
   getQuestions = () => {
-    // invoke quiz service API and
-    //populate  questionBank state with variable result
     quizService().then((question) => {
       this.setState({
         questionBank: question,
@@ -44,7 +43,7 @@ class QuizBee extends Component {
   render() {
     return (
       <div className="container">
-        <div className="title">QuizBee - Trivia about Australia</div>
+        <div className="title">Quiz</div>
         {this.state.questionBank.length > 0 &&
           this.state.responses < 5 &&
           this.state.questionBank.map(
@@ -65,4 +64,4 @@ class QuizBee extends Component {
   }
 }
 
-ReactDOM.render(<QuizBee />, document.getElementById("root"));
+ReactDOM.render(<Quiz />, document.getElementById("root"));
